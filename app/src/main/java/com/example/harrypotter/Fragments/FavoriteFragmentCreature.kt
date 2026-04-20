@@ -1,0 +1,41 @@
+package com.example.harrypotter.Fragments
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.LinearLayout
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.harrypotter.Adapters.CreatureAdapter
+import com.example.harrypotter.Adapters.FavoriteAdapter
+import com.example.harrypotter.Adapters.FavoriteAdapterCreature
+import com.example.harrypotter.Database.OverallDatabase
+import com.example.harrypotter.R
+import com.google.android.material.button.MaterialButton
+
+class FavoriteFragmentCreature : Fragment(R.layout.fragment_favorite_creature) {
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        val charList = view.findViewById<RecyclerView>(R.id.favoriteCreatureList)
+
+        val database = OverallDatabase.getDatabase(requireContext())
+
+        val emptyData = view.findViewById<LinearLayout>(R.id.emptyData)
+
+        database.favoriteDaoCreature().getFavoriteAllCreature().observe(viewLifecycleOwner, {
+
+            if (it.size == 0) {
+                emptyData.visibility = View.VISIBLE
+            } else {
+                emptyData.visibility = View.GONE
+            }
+            val adapt = FavoriteAdapterCreature(requireContext(), it)
+
+            charList.adapter = adapt
+            charList.layoutManager = LinearLayoutManager(requireContext())
+        })
+    }
+}
