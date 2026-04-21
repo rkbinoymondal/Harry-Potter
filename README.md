@@ -9,3 +9,10 @@
 - A Profile Page showing the details of the user. Along with number of favorite characters, creatures and spells.
 - In the Profile Page, an edit button is there beside the profile image where user can select their favorite character and set it as their profile image.
 - At the end a logout button is also there in the profile page, if the user wants to logout from the app.
+
+## Components Used
+- Basic Views like View, TextView, ImageView, TextInputLayout, etc.
+- Material CardView, MaterialToolbar, BottomNavigationView, Spinner, Material Buttons
+- Reycler View, Nested Scroll View, Fragments
+- Retrofit for API Fetching
+- Room DB and Shared Preferences for Storing Data
